@@ -4,7 +4,7 @@
 // The game gets no callbacks: it asks poll() once a frame and receives everything that arrived since.
 // Everything a peer sends is treated as untrusted data: size-limited, rate-limited, never executed.
 window.ChainNet = (function () {
-  const PREFIX = "chainline-v1-", MAX_PEERS = 7, MAX_LEN = 600, MAX_PER_SEC = 90, MAX_INBOX = 600;
+  const PREFIX = "chainline-v1-", MAX_PEERS = 7, MAX_LEN = 1600, MAX_PER_SEC = 90, MAX_INBOX = 600;
   let peer = null, conns = {}, inbox = [], state = "idle", isHost = false, me = "", hostId = "", err = "";
   const push = (m) => { if (inbox.length < MAX_INBOX) inbox.push(m); };
   function fail(e) { err = (e && e.type) || String(e); push({ t: "error", e: err }); if (state !== "hosting" && state !== "joined") state = "error"; }
